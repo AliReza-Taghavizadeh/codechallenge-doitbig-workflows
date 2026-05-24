@@ -63,7 +63,7 @@ We care more about your **thinking and decisions** than completeness.
 
 - Working prototype (rough is fine)
 
-- 5–10 min Loom (or short write-up) explaining:
+- 5–10 min Loom explaining:
   - Your approach
   - How a non-technical user would use it
   - Key tradeoffs you made
