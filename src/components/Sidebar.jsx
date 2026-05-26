@@ -8,30 +8,37 @@ export default function Sidebar() {
   const selectedId = useBuilderStore((s) => s.selectedId)
   const setLabel = useBuilderStore((s) => s.setLabel)
 
-  const selected = selectedId === button.id
+  const isPreview = mode === 'preview'
+  const showWorkflow = isPreview || selectedId === button.id
 
   return (
     <aside className="w-[380px] shrink-0 border-l border-slate-200 bg-white flex flex-col">
       <div className="px-5 py-4 border-b border-slate-200">
         <div className="text-xs uppercase tracking-widest text-slate-400 font-semibold">
-          {mode === 'design' ? 'Configure' : 'Read only'}
+          {isPreview ? 'Preview' : 'Configure'}
         </div>
         <div className="text-sm text-slate-600 mt-0.5">
-          {selected ? 'Button workflow' : 'Nothing selected'}
+          {showWorkflow ? 'Button workflow' : 'Nothing selected'}
         </div>
       </div>
 
-      {!selected && <EmptyState mode={mode} />}
+      {isPreview && (
+        <div className="px-5 py-2.5 bg-amber-50 border-b border-amber-200 text-xs text-amber-800">
+          Preview mode is read only. Click the button to run the workflow.
+        </div>
+      )}
 
-      {selected && (
+      {!showWorkflow && <EmptyState />}
+
+      {showWorkflow && (
         <div className="flex-1 overflow-auto p-5 space-y-5">
-          <LabelField value={button.label} onChange={setLabel} readOnly={mode !== 'design'} />
+          <LabelField value={button.label} onChange={setLabel} readOnly={isPreview} />
           <div>
             <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">
               When clicked
             </div>
-            <StepList readOnly={mode !== 'design'} />
-            {mode === 'design' && (
+            <StepList readOnly={isPreview} />
+            {!isPreview && (
               <div className="mt-3">
                 <ActionPicker />
               </div>
@@ -43,13 +50,11 @@ export default function Sidebar() {
   )
 }
 
-function EmptyState({ mode }) {
+function EmptyState() {
   return (
     <div className="flex-1 grid place-items-center p-6 text-center">
       <div className="text-slate-500 text-sm max-w-[260px] leading-relaxed">
-        {mode === 'design'
-          ? 'Click the button on the canvas to configure what happens when it is pressed.'
-          : 'Switch to Design mode to edit the workflow, or click the button to run it.'}
+        Click the button on the canvas to configure what happens when it is pressed.
       </div>
     </div>
   )
