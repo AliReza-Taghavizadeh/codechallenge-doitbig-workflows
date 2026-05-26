@@ -36,3 +36,11 @@ html, body, #root {
 .wb-pulse-success {
   animation: wb-pulse-success 0.5s ease-out both;
 }
+
+@keyframes wb-step-flash {
+  0%   { box-shadow: 0 0 0 0 var(--wb-ring, rgba(99,102,241,0.7)); transform: scale(1.15); }
+  100% { box-shadow: 0 0 0 10px rgba(0,0,0,0); transform: scale(1.15); }
+}
+.wb-step-flash {
+  animation: wb-step-flash 0.9s ease-out infinite;
+}

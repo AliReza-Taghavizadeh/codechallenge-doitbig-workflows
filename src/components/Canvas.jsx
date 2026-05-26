@@ -1,35 +1,44 @@
 import { useBuilderStore } from '../store/builderStore'
+import StepIndicators from './StepIndicators'
 
-export default function Canvas({ onButtonClick, flash, running, mode: modeOverride, embedded }) {
-  const storeMode = useBuilderStore((s) => s.mode)
-  const mode = modeOverride || storeMode
+export default function Canvas({ onButtonClick, flash, running, progress }) {
+  const mode = useBuilderStore((s) => s.mode)
   const button = useBuilderStore((s) => s.button)
   const selectedId = useBuilderStore((s) => s.selectedId)
   const clearSelection = useBuilderStore((s) => s.clearSelection)
 
   const isDesign = mode === 'design'
-  const selected = selectedId === button.id && !embedded
+  const selected = selectedId === button.id
+  const steps = button.workflow?.steps || []
 
   const wrapperClass = isDesign
     ? 'flex-1 blueprint-bg relative overflow-auto'
     : 'flex-1 bg-slate-50 relative overflow-auto'
 
   return (
-    <div className={wrapperClass} onClick={isDesign && !embedded ? clearSelection : undefined}>
+    <div className={wrapperClass} onClick={isDesign ? clearSelection : undefined}>
       {isDesign && (
         <div className="absolute top-4 left-5 text-xs uppercase tracking-widest text-white/60 font-medium">
           Design mode
         </div>
       )}
       <div className="h-full w-full grid place-items-center p-10">
-        <CanvasButton
-          label={button.label || 'Untitled button'}
-          isDesign={isDesign}
-          selected={selected}
-          flash={flash}
-          running={running}
-          onClick={(e) => { e.stopPropagation(); onButtonClick() }}
-        />
+        <div className="flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+          <CanvasButton
+            label={button.label || 'Untitled button'}
+            isDesign={isDesign}
+            selected={selected}
+            flash={flash}
+            running={running}
+            onClick={onButtonClick}
+          />
+          <StepIndicators
+            steps={steps}
+            runningIndex={progress?.runningIndex ?? null}
+            results={progress?.results || {}}
+            onBlueprint={isDesign}
+          />
+        </div>
       </div>
     </div>
   )
@@ -53,12 +62,7 @@ function CanvasButton({ label, isDesign, selected, flash, running, onClick }) {
     (flash === 'success' ? ' wb-pulse-success' : '')
 
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={running}
-      className={base + ' ' + look + ring + fx}
-    >
+    <button type="button" onClick={onClick} disabled={running} className={base + ' ' + look + ring + fx}>
       {running ? 'Running...' : label}
     </button>
   )

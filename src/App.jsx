@@ -22,7 +22,7 @@ export default function App() {
   useEffect(() => { load() }, [load])
 
   const onEvent = useCallback((event) => append(event), [append])
-  const { run, running, flash } = useWorkflowRunner({ onEvent })
+  const { run, running, flash, progress } = useWorkflowRunner({ onEvent })
 
   useEffect(() => { setRunning(running) }, [running, setRunning])
 
@@ -39,7 +39,7 @@ export default function App() {
       {serverError && <BackendBanner message={serverError} />}
       {!loaded && <LoadingBanner />}
       <div className="flex-1 flex min-h-0">
-        <Canvas onButtonClick={onCanvasButtonClick} flash={flash} running={running} />
+        <Canvas onButtonClick={onCanvasButtonClick} flash={flash} running={running} progress={progress} />
         <Sidebar />
       </div>
       <RunLog />

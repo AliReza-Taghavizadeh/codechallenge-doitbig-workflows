@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react'
 import { Workflow } from './domain/Workflow'
 import { loadButton } from './lib/workflowApi'
 import { useWorkflowRunner } from './engine/useWorkflowRunner'
+import StepIndicators from './components/StepIndicators'
 
 export default function UserApp() {
   const [button, setButton] = useState(null)
   const [error, setError] = useState(null)
-  const { run, running, flash } = useWorkflowRunner()
+  const { run, running, flash, progress } = useWorkflowRunner()
 
   useEffect(() => {
     loadButton()
@@ -19,10 +20,23 @@ export default function UserApp() {
     run(Workflow.fromJSON(button.workflow))
   }
 
+  const steps = button?.workflow?.steps || []
+
   return (
     <div className="h-full w-full grid place-items-center bg-slate-50 p-10">
-      <div className="flex flex-col items-center gap-6">
-        {error ? <BackendError message={error} /> : <UserButton button={button} flash={flash} running={running} onClick={onClick} />}
+      <div className="flex flex-col items-center gap-2">
+        {error ? (
+          <BackendError message={error} />
+        ) : (
+          <>
+            <UserButton button={button} flash={flash} running={running} onClick={onClick} />
+            <StepIndicators
+              steps={steps}
+              runningIndex={progress.runningIndex}
+              results={progress.results}
+            />
+          </>
+        )}
       </div>
     </div>
   )
