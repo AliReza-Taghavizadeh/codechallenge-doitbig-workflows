@@ -1,9 +1,11 @@
-import { useRef, useState } from 'react'
-import { useBuilderStore, selectWorkflow } from '../store/builderStore'
+import { useMemo, useRef, useState } from 'react'
+import { useBuilderStore, selectWorkflowJSON } from '../store/builderStore'
+import { Workflow } from '../domain/Workflow'
 import StepCard from './StepCard'
 
 export default function StepList({ readOnly }) {
-  const workflow = useBuilderStore(selectWorkflow)
+  const workflowJSON = useBuilderStore(selectWorkflowJSON)
+  const workflow = useMemo(() => Workflow.fromJSON(workflowJSON), [workflowJSON])
   const expandedStepId = useBuilderStore((s) => s.expandedStepId)
   const expandStep = useBuilderStore((s) => s.expandStep)
   const removeStep = useBuilderStore((s) => s.removeStep)

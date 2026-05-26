@@ -1,5 +1,6 @@
-import { useBuilderStore, selectWorkflow } from './store/builderStore'
+import { useBuilderStore, selectWorkflowJSON } from './store/builderStore'
 import { useLogStore } from './store/logStore'
+import { Workflow } from './domain/Workflow'
 import TopBar from './components/TopBar'
 import Canvas from './components/Canvas'
 import Sidebar from './components/Sidebar'
@@ -8,10 +9,10 @@ import RunLog from './components/RunLog'
 export default function App() {
   const mode = useBuilderStore((s) => s.mode)
   const selectButton = useBuilderStore((s) => s.selectButton)
-  const workflow = useBuilderStore(selectWorkflow)
+  const workflowJSON = useBuilderStore(selectWorkflowJSON)
   const startRun = useLogStore((s) => s.start)
 
-  const runWorkflow = () => startRun(workflow)
+  const runWorkflow = () => startRun(Workflow.fromJSON(workflowJSON))
 
   const onCanvasButtonClick = () => {
     if (mode === 'design') selectButton()

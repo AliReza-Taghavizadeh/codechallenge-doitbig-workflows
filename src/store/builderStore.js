@@ -60,4 +60,4 @@ export const useBuilderStore = create(
   ),
 )
 
-export const selectWorkflow = (state) => Workflow.fromJSON(state.button.workflow)
+export const selectWorkflowJSON = (state) => state.button.workflow
