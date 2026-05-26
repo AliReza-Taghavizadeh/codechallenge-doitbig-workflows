@@ -4,7 +4,7 @@ export default function StepIndicators({ steps, runningIndex, results, onBluepri
   if (!steps || steps.length === 0) return null
 
   return (
-    <div className="mt-4 flex flex-wrap justify-center gap-2 max-w-[320px]">
+    <div className="mt-2 flex flex-wrap justify-center gap-2 max-w-72">
       {steps.map((step, i) => (
         <Chip
           key={step.id}

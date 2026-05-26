@@ -47,7 +47,7 @@ export default function StepList({ readOnly }) {
   }
 
   return (
-    <div className="space-y-2">
+    <div className="">
       {workflow.steps.map((step, i) => (
         <div key={step.id}>
           <div className={overIndex === i ? 'ring-2 ring-indigo-300 rounded-xl' : ''}>
@@ -63,7 +63,7 @@ export default function StepList({ readOnly }) {
             />
           </div>
           {i < workflow.steps.length - 1 && (
-            <div className="flex justify-center py-1 text-slate-300 text-xs">↓</div>
+            <div className="flex justify-center py-1 text-slate-600 text-xl">↓</div>
           )}
         </div>
       ))}

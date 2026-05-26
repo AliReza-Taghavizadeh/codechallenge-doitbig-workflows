@@ -4,10 +4,18 @@
       "id": "main",
       "button": {
         "id": "btn-main",
-        "label": "Send ma=",
+        "label": "Remove the user and send email",
         "workflow": {
           "id": "wf-main",
           "steps": [
+            {
+              "id": "a7f3c1dc-a320-4f91-b055-02f5bb91b8dc",
+              "actionId": "delete_record",
+              "config": {
+                "collection": "users",
+                "recordId": "1"
+              }
+            },
             {
               "id": "seed-1",
               "actionId": "send_email",
@@ -16,31 +24,6 @@
                 "subject": "Welcome",
                 "body": "Hello there."
               }
-            },
-            {
-              "id": "558847d4-f842-405d-ab6a-d28c6e9c7eb3",
-              "actionId": "send_email",
-              "config": {}
-            },
-            {
-              "id": "fdf65967-f5de-4d00-9d6c-20306deb6610",
-              "actionId": "send_email",
-              "config": {}
-            },
-            {
-              "id": "86bd9e5b-944b-45a3-85c9-d53e0aadf070",
-              "actionId": "send_email",
-              "config": {}
-            },
-            {
-              "id": "6ee7c1b3-cb62-4498-b1e0-385e10d1cc24",
-              "actionId": "create_record",
-              "config": {}
-            },
-            {
-              "id": "952b5882-128e-431b-bc3d-6955ae289e53",
-              "actionId": "send_email",
-              "config": {}
             }
           ]
         }
@@ -162,6 +145,13 @@
       "body": "Hello there.",
       "sentAt": "2026-05-26T20:51:45.465Z",
       "id": 10
+    },
+    {
+      "to": "alice@example.com",
+      "subject": "Welcome",
+      "body": "Hello there.",
+      "sentAt": "2026-05-26T20:59:58.365Z",
+      "id": 11
     }
   ],
   "slack_messages": []
