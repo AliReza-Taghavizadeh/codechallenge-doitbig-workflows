@@ -1,5 +1,6 @@
 import { useBuilderStore } from '../store/builderStore'
 import StepList from './StepList'
+import ActionPicker from './ActionPicker'
 
 export default function Sidebar() {
   const mode = useBuilderStore((s) => s.mode)
@@ -30,6 +31,11 @@ export default function Sidebar() {
               When clicked
             </div>
             <StepList readOnly={mode !== 'design'} />
+            {mode === 'design' && (
+              <div className="mt-3">
+                <ActionPicker />
+              </div>
+            )}
           </div>
         </div>
       )}
