@@ -4,7 +4,7 @@
       "id": "main",
       "button": {
         "id": "btn-main",
-        "label": "Send mail and add test",
+        "label": "Send ma=",
         "workflow": {
           "id": "wf-main",
           "steps": [
@@ -18,12 +18,29 @@
               }
             },
             {
-              "id": "1d1c56b7-af51-4f74-ac1a-db7c992d0369",
-              "actionId": "delete_record",
-              "config": {
-                "recordId": "5",
-                "collection": "orders"
-              }
+              "id": "558847d4-f842-405d-ab6a-d28c6e9c7eb3",
+              "actionId": "send_email",
+              "config": {}
+            },
+            {
+              "id": "fdf65967-f5de-4d00-9d6c-20306deb6610",
+              "actionId": "send_email",
+              "config": {}
+            },
+            {
+              "id": "86bd9e5b-944b-45a3-85c9-d53e0aadf070",
+              "actionId": "send_email",
+              "config": {}
+            },
+            {
+              "id": "6ee7c1b3-cb62-4498-b1e0-385e10d1cc24",
+              "actionId": "create_record",
+              "config": {}
+            },
+            {
+              "id": "952b5882-128e-431b-bc3d-6955ae289e53",
+              "actionId": "send_email",
+              "config": {}
             }
           ]
         }
@@ -110,6 +127,41 @@
       "body": "Hello there.",
       "sentAt": "2026-05-26T20:28:50.446Z",
       "id": 5
+    },
+    {
+      "to": "alice@example.com",
+      "subject": "Welcome",
+      "body": "Hello there.",
+      "sentAt": "2026-05-26T20:31:25.891Z",
+      "id": 6
+    },
+    {
+      "to": "alice@example.com",
+      "subject": "Welcome",
+      "body": "Hello there.",
+      "sentAt": "2026-05-26T20:39:28.071Z",
+      "id": 7
+    },
+    {
+      "to": "alice@example.com",
+      "subject": "Welcome",
+      "body": "Hello there.",
+      "sentAt": "2026-05-26T20:40:03.418Z",
+      "id": 8
+    },
+    {
+      "to": "alice@example.com",
+      "subject": "Welcome",
+      "body": "Hello there.",
+      "sentAt": "2026-05-26T20:51:39.235Z",
+      "id": 9
+    },
+    {
+      "to": "alice@example.com",
+      "subject": "Welcome",
+      "body": "Hello there.",
+      "sentAt": "2026-05-26T20:51:45.465Z",
+      "id": 10
     }
   ],
   "slack_messages": []

@@ -25,8 +25,7 @@ function Chip({ step, index, status, active, onBlueprint }) {
   const icon = status === 'error' ? '✗' : status === 'success' ? '✓' : (cls ? cls.icon : '•')
   const title = (cls ? `${index + 1}. ${cls.label}` : `Step ${index + 1}`)
     + (status === 'success' ? ' (done)' : status === 'error' ? ' (failed)' : active ? ' (running)' : '')
-
-  const base = 'w-8 h-8 rounded-full grid place-items-center text-white text-xs font-medium shadow-sm transition'
+  const base = 'w-6 h-6 rounded-full grid place-items-center text-white text-md font-bold shadow-sm transition'
   let state = ''
   if (status === 'error') state = ' ring-2 ring-rose-400'
   else if (status === 'success') state = ' ring-2 ring-emerald-400'
@@ -37,7 +36,7 @@ function Chip({ step, index, status, active, onBlueprint }) {
     : { background: color }
 
   return (
-    <div className="flex flex-col items-center gap-1">
+    <div className="flex flex-col items-center gap-0.5 select-none pointer-events-none">
       <div
         className={base + state + (active ? ' wb-step-flash' : '')}
         style={flashStyle}

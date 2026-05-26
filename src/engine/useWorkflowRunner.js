@@ -13,7 +13,10 @@ export function useWorkflowRunner({ onEvent } = {}) {
   const armFlash = useCallback((kind) => {
     setFlash(kind)
     if (flashTimer.current) clearTimeout(flashTimer.current)
-    flashTimer.current = setTimeout(() => setFlash(null), 500)
+    flashTimer.current = setTimeout(() => {
+      setFlash(null)
+      setProgress(emptyProgress)
+    }, 500)
   }, [])
 
   const run = useCallback((workflow) => {
