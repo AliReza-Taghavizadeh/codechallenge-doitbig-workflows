@@ -4,12 +4,21 @@
       "id": "main",
       "button": {
         "id": "btn-main",
-        "label": "Remove the user and send email",
+        "label": "Add +r emove the user and send email",
         "workflow": {
           "id": "wf-main",
           "steps": [
             {
-              "id": "a7f3c1dc-a320-4f91-b055-02f5bb91b8dc",
+              "id": "c1e46674-e5cb-4904-ad3c-e41580189b13",
+              "actionId": "create_record",
+              "config": {
+                "collection": "users",
+                "notes": "Add a mock user to try ",
+                "name": "Sina"
+              }
+            },
+            {
+              "id": "845dd1aa-824c-45ff-8cf4-1ce55d0ed3b5",
               "actionId": "delete_record",
               "config": {
                 "collection": "users",
@@ -24,6 +33,14 @@
                 "subject": "Welcome",
                 "body": "Hello there."
               }
+            },
+            {
+              "id": "9bf9e797-da6d-4793-9980-faefa3c5fcb2",
+              "actionId": "send_slack",
+              "config": {
+                "message": "Hello team,\nRemoved the user",
+                "channel": "#general"
+              }
             }
           ]
         }
@@ -32,31 +49,36 @@
   ],
   "users": [
     {
-      "id": "u_1",
+      "id": 1,
       "name": "Alice",
       "email": "alice@example.com",
       "status": "active"
     },
     {
-      "id": "u_2",
+      "id": 2,
       "name": "Bob",
       "email": "bob@example.com",
       "status": "active"
     },
     {
+      "id": 3,
       "name": "Test",
-      "notes": "",
-      "id": "k0I3Rk-"
+      "notes": ""
+    },
+    {
+      "id": 4,
+      "name": "Sina",
+      "notes": "Add a mock user to try "
     }
   ],
   "orders": [
     {
-      "id": "o_1",
+      "id": 1,
       "total": 49.99,
       "status": "paid"
     },
     {
-      "id": "o_2",
+      "id": 2,
       "total": 12.5,
       "status": "pending"
     }

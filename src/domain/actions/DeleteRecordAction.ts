@@ -16,7 +16,7 @@ export class DeleteRecordAction extends Action {
   static description = 'Permanently remove a record from a collection';
   static fields: FieldSchema[] = [
     { key: 'collection', label: 'Collection', type: 'select', required: true, options: COLLECTIONS },
-    { key: 'recordId', label: 'Record ID', type: 'text', placeholder: 'u_1', required: true },
+    { key: 'recordId', label: 'Record ID', type: 'text', placeholder: '1', required: true },
   ];
 
   async run(config: Record<string, any>): Promise<RunResult> {

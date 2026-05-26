@@ -16,7 +16,7 @@ export class UpdateRecordAction extends Action {
   static description = 'Modify fields on an existing record';
   static fields: FieldSchema[] = [
     { key: 'collection', label: 'Collection', type: 'select', required: true, options: COLLECTIONS },
-    { key: 'recordId', label: 'Record ID', type: 'text', placeholder: 'u_1', required: true, help: 'Try u_1 or o_1 from the seed data' },
+    { key: 'recordId', label: 'Record ID', type: 'text', placeholder: '1', required: true, help: 'Numeric id from the chosen collection' },
     { key: 'field', label: 'Field to update', type: 'text', placeholder: 'status', required: true },
     { key: 'value', label: 'New value', type: 'text', placeholder: 'archived' },
   ];
